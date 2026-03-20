@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lumen Top Trumps</title>
+<title>Lumen Dream Team Cards</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 :root{--lb:#021941;--ly:#FFD32A;--lw:#FFFFFF;--dark:#010e24;--mid:#032259;--card-w:320px;--scan:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,211,42,.025) 2px,rgba(255,211,42,.025) 4px);}
@@ -36,7 +36,7 @@ body{background:var(--lb);background-image:radial-gradient(ellipse at 15% 60%,rg
 .field-input{width:100%;padding:9px 10px;background:rgba(1,14,36,.8);border:2px solid rgba(255,211,42,.2);color:var(--lw);font-family:'VT323',monospace;font-size:19px;outline:none;letter-spacing:1px;transition:border-color .2s;}
 .field-input:focus{border-color:var(--ly);}
 .field-input::placeholder{color:rgba(255,255,255,.25);}
-.avatar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.avatar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
 .av-opt{background:rgba(1,14,36,.7);border:2px solid rgba(255,211,42,.15);padding:8px 4px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .18s;}
 .av-opt:hover{border-color:rgba(255,211,42,.5);}
 .av-opt.sel{border-color:var(--ly);background:rgba(3,34,89,.9);box-shadow:0 0 10px rgba(255,211,42,.3);}
@@ -282,7 +282,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--ly);
 
 <!-- LOADING -->
 <div class="loading-overlay" id="loading-overlay">
-  <div class="loading-text">LOADING LUMEN TOP TRUMPS...</div>
+  <div class="loading-text">LOADING LUMEN DREAM TEAM CARDS...</div>
   <div class="loading-bar"><div class="loading-fill"></div></div>
 </div>
 
@@ -308,8 +308,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--ly);
 
 <div class="topbar">
   <div>
-    <div class="topbar-title">★ LUMEN TOP TRUMPS ★</div>
-    <div class="topbar-sub">TEAM PERFORMANCE CARDS // SEASON 01</div>
+    <div class="topbar-title">★ LUMEN DREAM TEAM CARDS ★</div>
+    <div class="topbar-sub">CHAMPIONSHIP EDITION // SEASON 01</div>
   </div>
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('gallery')">▦ LUMENATION</button>
@@ -393,7 +393,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--ly);
       <div class="form-section-title">▶ PLAYER DETAILS</div>
       <div class="field-group"><label class="field-label">PLAYER NAME</label><input class="field-input" id="f-name" type="text" placeholder="Full Name" oninput="syncCard()" maxlength="22"></div>
       <div class="field-group"><label class="field-label">JOB TITLE / ROLE</label><input class="field-input" id="f-role" type="text" placeholder="e.g. Senior Designer" oninput="syncCard()" maxlength="28"></div>
-      <div class="field-group"><label class="field-label">CHOOSE YOUR PLAYER</label><div class="avatar-grid" id="avatar-grid"></div></div>
+      <div class="field-group"><label class="field-label">CHOOSE YOUR CHARACTER</label><div class="avatar-grid" id="avatar-grid"></div><div id="avatar-desc" style="font-family:'VT323',monospace;font-size:15px;color:rgba(255,211,42,.7);letter-spacing:1px;margin-top:8px;min-height:20px;text-align:center;"></div></div>
       <div class="form-section-title" style="margin-top:24px;">▶ SKILL SCORES</div>
       <div id="sliders-container"></div>
       <button class="btn-primary" onclick="saveCard()">⊕ SAVE CARD</button>
@@ -403,7 +403,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--ly);
       <div class="card-wrap-label">LIVE PREVIEW</div>
       <div class="card">
         <div class="corner corner-tl"></div><div class="corner corner-tr"></div><div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <div class="c-header"><span class="c-series">LUMEN // SERIES 01</span><span class="c-id" id="c-id">#---</span></div>
+        <div class="c-header"><span class="c-series">LUMEN // CHAMPIONSHIP EDITION</span><span class="c-id" id="c-id">#---</span></div>
         <div class="c-photo"><div class="c-av" id="c-av"></div></div>
         <div class="c-nameplate">
           <div class="c-name" id="c-name">PLAYER NAME</div>
@@ -411,7 +411,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--ly);
           <div class="c-sp-row"><span class="c-sp-label">⚡ SUPER POWER</span><span class="c-sp-val" id="c-sp">—</span></div>
         </div>
         <div class="c-stats" id="c-stats"></div>
-        <div class="c-footer"><span class="c-brand">LUMEN</span><span class="c-edition">TOP TRUMPS 2026</span></div>
+        <div class="c-footer"><span class="c-brand">LUMEN</span><span class="c-edition">DREAM TEAM 2026</span></div>
       </div>
     </div>
   </div>
@@ -440,14 +440,173 @@ const POTM_PIN = '1234'; // Change this to your PIN
 
 // ── AVATARS ──
 const AVATARS=[
-  {id:'warrior',name:'WARRIOR',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="6" y="0" width="4" height="2" fill="#aaa"/><rect x="5" y="2" width="6" height="4" fill="#f0c070"/><rect x="6" y="3" width="1" height="1" fill="#222"/><rect x="9" y="3" width="1" height="1" fill="#222"/><rect x="6" y="5" width="4" height="1" fill="#c0392b"/><rect x="4" y="6" width="8" height="5" fill="#c0392b"/><rect x="2" y="7" width="2" height="3" fill="#c0392b"/><rect x="12" y="7" width="2" height="3" fill="#c0392b"/><rect x="2" y="10" width="2" height="1" fill="#f0c070"/><rect x="12" y="10" width="2" height="1" fill="#f0c070"/><rect x="1" y="6" width="1" height="6" fill="#aaa"/><rect x="5" y="11" width="2" height="4" fill="#888"/><rect x="9" y="11" width="2" height="4" fill="#888"/><rect x="4" y="14" width="3" height="2" fill="#555"/><rect x="9" y="14" width="3" height="2" fill="#555"/></svg>`;}},
-  {id:'wizard',name:'WIZARD',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="8" y="0" width="1" height="1" fill="#FFD32A"/><rect x="7" y="1" width="3" height="1" fill="#6a0dad"/><rect x="6" y="2" width="4" height="1" fill="#6a0dad"/><rect x="5" y="3" width="6" height="3" fill="#ffe0b2"/><rect x="6" y="4" width="1" height="1" fill="#222"/><rect x="9" y="4" width="1" height="1" fill="#222"/><rect x="7" y="5" width="2" height="1" fill="#6a0dad"/><rect x="4" y="6" width="8" height="5" fill="#6a0dad"/><rect x="2" y="7" width="2" height="3" fill="#6a0dad"/><rect x="12" y="7" width="2" height="3" fill="#6a0dad"/><rect x="2" y="10" width="2" height="1" fill="#ffe0b2"/><rect x="12" y="10" width="2" height="1" fill="#FFD32A"/><rect x="14" y="5" width="1" height="8" fill="#4a0080"/><rect x="13" y="4" width="2" height="2" fill="#FFD32A"/><rect x="5" y="11" width="2" height="4" fill="#4a0080"/><rect x="9" y="11" width="2" height="4" fill="#4a0080"/><rect x="4" y="14" width="3" height="2" fill="#360060"/><rect x="9" y="14" width="3" height="2" fill="#360060"/></svg>`;}},
-  {id:'knight',name:'KNIGHT',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="5" y="1" width="6" height="5" fill="#999"/><rect x="5" y="2" width="6" height="2" fill="#777"/><rect x="6" y="3" width="1" height="1" fill="#6cf"/><rect x="9" y="3" width="1" height="1" fill="#6cf"/><rect x="6" y="5" width="4" height="1" fill="#555"/><rect x="4" y="6" width="8" height="5" fill="#888"/><rect x="5" y="7" width="6" height="2" fill="#FFD32A"/><rect x="2" y="7" width="2" height="4" fill="#888"/><rect x="12" y="7" width="2" height="4" fill="#888"/><rect x="1" y="7" width="1" height="5" fill="#aaa"/><rect x="5" y="11" width="2" height="4" fill="#666"/><rect x="9" y="11" width="2" height="4" fill="#666"/><rect x="4" y="14" width="3" height="2" fill="#888"/><rect x="9" y="14" width="3" height="2" fill="#888"/></svg>`;}},
-  {id:'rogue',name:'ROGUE',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="5" y="1" width="6" height="2" fill="#1a1a1a"/><rect x="5" y="3" width="6" height="3" fill="#c8a870"/><rect x="6" y="4" width="1" height="1" fill="#222"/><rect x="9" y="4" width="1" height="1" fill="#e74c3c"/><rect x="7" y="5" width="2" height="1" fill="#a00"/><rect x="4" y="6" width="8" height="5" fill="#1a1a1a"/><rect x="2" y="7" width="2" height="3" fill="#1a1a1a"/><rect x="12" y="7" width="2" height="3" fill="#1a1a1a"/><rect x="2" y="10" width="2" height="1" fill="#c8a870"/><rect x="12" y="10" width="2" height="1" fill="#c8a870"/><rect x="14" y="7" width="1" height="5" fill="#aaa"/><rect x="13" y="6" width="2" height="2" fill="#aaa"/><rect x="5" y="11" width="2" height="4" fill="#111"/><rect x="9" y="11" width="2" height="4" fill="#111"/><rect x="4" y="14" width="3" height="2" fill="#2a2a2a"/><rect x="9" y="14" width="3" height="2" fill="#2a2a2a"/></svg>`;}},
-  {id:'ranger',name:'RANGER',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="5" y="0" width="6" height="3" fill="#5d4037"/><rect x="5" y="3" width="6" height="3" fill="#d4a06a"/><rect x="6" y="4" width="1" height="1" fill="#222"/><rect x="9" y="4" width="1" height="1" fill="#222"/><rect x="6" y="5" width="4" height="1" fill="#5d4037"/><rect x="4" y="6" width="8" height="5" fill="#4a7c3f"/><rect x="2" y="6" width="2" height="5" fill="#4a7c3f"/><rect x="12" y="6" width="2" height="5" fill="#4a7c3f"/><rect x="2" y="11" width="2" height="1" fill="#d4a06a"/><rect x="12" y="11" width="2" height="1" fill="#d4a06a"/><rect x="0" y="5" width="1" height="8" fill="#5d4037"/><rect x="5" y="11" width="2" height="4" fill="#795548"/><rect x="9" y="11" width="2" height="4" fill="#795548"/><rect x="4" y="14" width="3" height="2" fill="#5d4037"/><rect x="9" y="14" width="3" height="2" fill="#5d4037"/></svg>`;}},
-  {id:'mage',name:'NINJA',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="5" y="0" width="6" height="2" fill="#ff8c00"/><rect x="4" y="2" width="2" height="3" fill="#e65100"/><rect x="5" y="2" width="6" height="4" fill="#ffe0b2"/><rect x="6" y="3" width="1" height="1" fill="#222"/><rect x="9" y="3" width="1" height="1" fill="#222"/><rect x="7" y="5" width="2" height="1" fill="#ff8c00"/><rect x="4" y="6" width="8" height="5" fill="#ff8c00"/><rect x="2" y="7" width="2" height="3" fill="#ff8c00"/><rect x="12" y="7" width="2" height="3" fill="#ff8c00"/><rect x="2" y="10" width="2" height="1" fill="#ffe0b2"/><rect x="12" y="10" width="2" height="1" fill="#ffe0b2"/><rect x="13" y="4" width="1" height="7" fill="#795548"/><rect x="13" y="4" width="2" height="1" fill="#FFD32A"/><rect x="13" y="7" width="2" height="1" fill="#FFD32A"/><rect x="5" y="11" width="2" height="4" fill="#e65100"/><rect x="9" y="11" width="2" height="4" fill="#e65100"/><rect x="4" y="14" width="3" height="2" fill="#bf360c"/><rect x="9" y="14" width="3" height="2" fill="#bf360c"/></svg>`;}},
-  {id:'bard',name:'MAVERICK',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="6" y="0" width="4" height="2" fill="#e91e8c"/><rect x="4" y="2" width="8" height="1" fill="#e91e8c"/><rect x="5" y="3" width="6" height="3" fill="#ffd6c0"/><rect x="6" y="4" width="1" height="1" fill="#222"/><rect x="9" y="4" width="1" height="1" fill="#222"/><rect x="7" y="5" width="2" height="1" fill="#e91e8c"/><rect x="4" y="6" width="8" height="5" fill="#e91e8c"/><rect x="2" y="7" width="2" height="3" fill="#e91e8c"/><rect x="12" y="7" width="2" height="3" fill="#e91e8c"/><rect x="2" y="10" width="2" height="1" fill="#ffd6c0"/><rect x="12" y="10" width="2" height="1" fill="#ffd6c0"/><rect x="0" y="9" width="2" height="4" fill="#FFD32A"/><rect x="5" y="11" width="2" height="4" fill="#b0005a"/><rect x="9" y="11" width="2" height="4" fill="#b0005a"/><rect x="4" y="14" width="3" height="2" fill="#80003a"/><rect x="9" y="14" width="3" height="2" fill="#80003a"/></svg>`;}},
-  {id:'paladin',name:'CAPTAIN',svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated"><rect x="7" y="0" width="2" height="3" fill="#FFD32A"/><rect x="6" y="1" width="4" height="1" fill="#FFD32A"/><rect x="5" y="3" width="6" height="3" fill="#ffe0b2"/><rect x="6" y="4" width="1" height="1" fill="#1565c0"/><rect x="9" y="4" width="1" height="1" fill="#1565c0"/><rect x="7" y="5" width="2" height="1" fill="#FFD32A"/><rect x="4" y="6" width="8" height="6" fill="#1976d2"/><rect x="5" y="7" width="6" height="4" fill="#1e88e5"/><rect x="7" y="7" width="2" height="4" fill="#FFD32A"/><rect x="5" y="9" width="6" height="1" fill="#FFD32A"/><rect x="2" y="8" width="2" height="3" fill="#1565c0"/><rect x="12" y="8" width="2" height="3" fill="#1565c0"/><rect x="2" y="11" width="2" height="1" fill="#ffe0b2"/><rect x="12" y="11" width="2" height="1" fill="#ffe0b2"/><rect x="5" y="12" width="2" height="3" fill="#0d47a1"/><rect x="9" y="12" width="2" height="3" fill="#0d47a1"/><rect x="4" y="14" width="3" height="2" fill="#FFD32A"/><rect x="9" y="14" width="3" height="2" fill="#FFD32A"/></svg>`;}}
+  // ENERGIZER — bright yellow, dynamic pose, lightning bolt
+  {id:'energizer',name:'ENERGIZER',superpower:'Fuels the team with enthusiasm, positivity and momentum',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="8" y="1" width="4" height="1" fill="#FFD32A"/>
+    <rect x="7" y="2" width="6" height="4" fill="#ffe0a0"/>
+    <rect x="8" y="3" width="1" height="1" fill="#333"/><rect x="11" y="3" width="1" height="1" fill="#333"/>
+    <rect x="8" y="5" width="4" height="1" fill="#e6a800"/>
+    <rect x="5" y="6" width="10" height="6" fill="#FFD32A"/>
+    <rect x="3" y="7" width="2" height="4" fill="#FFD32A"/><rect x="15" y="7" width="2" height="4" fill="#FFD32A"/>
+    <rect x="3" y="11" width="2" height="1" fill="#ffe0a0"/><rect x="15" y="11" width="2" height="1" fill="#ffe0a0"/>
+    <rect x="9" y="6" width="2" height="3" fill="#fff"/><rect x="8" y="7" width="4" height="1" fill="#fff"/>
+    <rect x="7" y="12" width="2" height="5" fill="#e6a800"/><rect x="11" y="12" width="2" height="5" fill="#e6a800"/>
+    <rect x="6" y="16" width="3" height="2" fill="#cc8800"/><rect x="11" y="16" width="3" height="2" fill="#cc8800"/>
+  </svg>`;}},
+
+  // NAVIGATOR — navy/teal, compass detail, confident stance
+  {id:'navigator',name:'NAVIGATOR',superpower:'Charts the course — organised, structured and deadline-driven',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="7" y="1" width="6" height="1" fill="#00bcd4"/>
+    <rect x="7" y="2" width="6" height="4" fill="#e8c99a"/>
+    <rect x="8" y="3" width="1" height="1" fill="#333"/><rect x="11" y="3" width="1" height="1" fill="#333"/>
+    <rect x="8" y="5" width="4" height="1" fill="#00bcd4"/>
+    <rect x="5" y="6" width="10" height="6" fill="#00838f"/>
+    <rect x="3" y="7" width="2" height="4" fill="#00838f"/><rect x="15" y="7" width="2" height="4" fill="#00838f"/>
+    <rect x="3" y="11" width="2" height="1" fill="#e8c99a"/><rect x="15" y="11" width="2" height="1" fill="#e8c99a"/>
+    <rect x="8" y="7" width="4" height="4" fill="#00acc1"/>
+    <rect x="9" y="8" width="2" height="1" fill="#fff"/><rect x="9" y="10" width="2" height="1" fill="#fff"/>
+    <rect x="8" y="9" width="1" height="1" fill="#fff"/><rect x="11" y="9" width="1" height="1" fill="#fff"/>
+    <rect x="9" y="9" width="2" height="1" fill="#FFD32A"/>
+    <rect x="7" y="12" width="2" height="5" fill="#006064"/><rect x="11" y="12" width="2" height="5" fill="#006064"/>
+    <rect x="6" y="16" width="3" height="2" fill="#004d40"/><rect x="11" y="16" width="3" height="2" fill="#004d40"/>
+  </svg>`;}},
+
+  // PROBLEM SOLVER — green, magnifying glass, alert eyes
+  {id:'problemsolver',name:'PROBLEM SOLVER',superpower:'Cuts through complexity to find the right answer, fast',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="7" y="2" width="6" height="4" fill="#c8e6c9"/>
+    <rect x="8" y="3" width="1" height="1" fill="#1b5e20"/><rect x="11" y="3" width="1" height="1" fill="#1b5e20"/>
+    <rect x="8" y="5" width="4" height="1" fill="#388e3c"/>
+    <rect x="5" y="6" width="10" height="6" fill="#388e3c"/>
+    <rect x="3" y="7" width="2" height="4" fill="#388e3c"/><rect x="15" y="7" width="2" height="4" fill="#388e3c"/>
+    <rect x="3" y="11" width="2" height="1" fill="#c8e6c9"/><rect x="15" y="11" width="2" height="1" fill="#c8e6c9"/>
+    <rect x="14" y="5" width="4" height="4" fill="#a5d6a7"/>
+    <rect x="15" y="6" width="2" height="2" fill="#1b5e20"/>
+    <rect x="16" y="8" width="2" height="2" fill="#795548"/>
+    <rect x="7" y="12" width="2" height="5" fill="#2e7d32"/><rect x="11" y="12" width="2" height="5" fill="#2e7d32"/>
+    <rect x="6" y="16" width="3" height="2" fill="#1b5e20"/><rect x="11" y="16" width="3" height="2" fill="#1b5e20"/>
+  </svg>`;}},
+
+  // STORYTELLER — purple/magenta, speech bubble detail
+  {id:'storyteller',name:'STORYTELLER',superpower:'Turns ideas into compelling narratives that move people',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="7" y="2" width="6" height="4" fill="#f8bbd9"/>
+    <rect x="8" y="3" width="1" height="1" fill="#880e4f"/><rect x="11" y="3" width="1" height="1" fill="#880e4f"/>
+    <rect x="9" y="5" width="2" height="1" fill="#e91e8c"/>
+    <rect x="5" y="6" width="10" height="6" fill="#c2185b"/>
+    <rect x="3" y="7" width="2" height="4" fill="#c2185b"/><rect x="15" y="7" width="2" height="4" fill="#c2185b"/>
+    <rect x="3" y="11" width="2" height="1" fill="#f8bbd9"/><rect x="15" y="11" width="2" height="1" fill="#f8bbd9"/>
+    <rect x="2" y="3" width="5" height="4" fill="#ad1457"/>
+    <rect x="3" y="4" width="3" height="1" fill="#fff"/>
+    <rect x="3" y="6" width="2" height="1" fill="#fff"/>
+    <rect x="3" y="7" width="1" height="1" fill="#ad1457"/>
+    <rect x="7" y="12" width="2" height="5" fill="#880e4f"/><rect x="11" y="12" width="2" height="5" fill="#880e4f"/>
+    <rect x="6" y="16" width="3" height="2" fill="#560027"/><rect x="11" y="16" width="3" height="2" fill="#560027"/>
+  </svg>`;}},
+
+  // COACH — warm orange, arms outstretched, nurturing
+  {id:'coach',name:'COACH',superpower:'Brings out the best in others and helps the whole team grow',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="7" y="2" width="6" height="4" fill="#ffe0b2"/>
+    <rect x="8" y="3" width="1" height="1" fill="#3e2723"/><rect x="11" y="3" width="1" height="1" fill="#3e2723"/>
+    <rect x="9" y="5" width="2" height="1" fill="#ff8f00"/>
+    <rect x="5" y="6" width="10" height="6" fill="#ef6c00"/>
+    <rect x="2" y="6" width="3" height="2" fill="#ef6c00"/><rect x="15" y="6" width="3" height="2" fill="#ef6c00"/>
+    <rect x="1" y="7" width="2" height="1" fill="#ffe0b2"/><rect x="17" y="7" width="2" height="1" fill="#ffe0b2"/>
+    <rect x="3" y="8" width="2" height="3" fill="#ef6c00"/><rect x="15" y="8" width="2" height="3" fill="#ef6c00"/>
+    <rect x="3" y="11" width="2" height="1" fill="#ffe0b2"/><rect x="15" y="11" width="2" height="1" fill="#ffe0b2"/>
+    <rect x="8" y="7" width="4" height="2" fill="#fff3e0"/>
+    <rect x="7" y="12" width="2" height="5" fill="#e65100"/><rect x="11" y="12" width="2" height="5" fill="#e65100"/>
+    <rect x="6" y="16" width="3" height="2" fill="#bf360c"/><rect x="11" y="16" width="3" height="2" fill="#bf360c"/>
+  </svg>`;}},
+
+  // BRAINSTORMER — electric blue, lightbulb on head
+  {id:'brainstormer',name:'BRAINSTORMER',superpower:'The idea engine — constantly generating creative possibilities',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="8" y="0" width="4" height="2" fill="#FFD32A"/>
+    <rect x="7" y="1" width="6" height="2" fill="#fff176"/>
+    <rect x="9" y="0" width="2" height="1" fill="#fff"/>
+    <rect x="7" y="2" width="6" height="4" fill="#dce8f8"/>
+    <rect x="8" y="3" width="1" height="1" fill="#1a237e"/><rect x="11" y="3" width="1" height="1" fill="#1a237e"/>
+    <rect x="9" y="5" width="2" height="1" fill="#3949ab"/>
+    <rect x="5" y="6" width="10" height="6" fill="#3949ab"/>
+    <rect x="3" y="7" width="2" height="4" fill="#3949ab"/><rect x="15" y="7" width="2" height="4" fill="#3949ab"/>
+    <rect x="3" y="11" width="2" height="1" fill="#dce8f8"/><rect x="15" y="11" width="2" height="1" fill="#dce8f8"/>
+    <rect x="8" y="7" width="4" height="3" fill="#5c6bc0"/>
+    <rect x="7" y="12" width="2" height="5" fill="#283593"/><rect x="11" y="12" width="2" height="5" fill="#283593"/>
+    <rect x="6" y="16" width="3" height="2" fill="#1a237e"/><rect x="11" y="16" width="3" height="2" fill="#1a237e"/>
+  </svg>`;}},
+
+  // ANALYST — cool grey/silver, data screen, precise expression
+  {id:'analyst',name:'ANALYST',superpower:'Finds the signal in the noise with logic and data',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="7" y="2" width="6" height="4" fill="#cfd8dc"/>
+    <rect x="8" y="3" width="1" height="1" fill="#263238"/><rect x="11" y="3" width="1" height="1" fill="#263238"/>
+    <rect x="8" y="5" width="4" height="1" fill="#546e7a"/>
+    <rect x="5" y="6" width="10" height="6" fill="#546e7a"/>
+    <rect x="3" y="7" width="2" height="4" fill="#546e7a"/><rect x="15" y="7" width="2" height="4" fill="#546e7a"/>
+    <rect x="3" y="11" width="2" height="1" fill="#cfd8dc"/><rect x="15" y="11" width="2" height="1" fill="#cfd8dc"/>
+    <rect x="13" y="3" width="5" height="4" fill="#37474f"/>
+    <rect x="14" y="4" width="3" height="1" fill="#4fc3f7"/>
+    <rect x="14" y="5" width="2" height="1" fill="#4fc3f7"/>
+    <rect x="15" y="6" width="1" height="1" fill="#FFD32A"/>
+    <rect x="7" y="12" width="2" height="5" fill="#37474f"/><rect x="11" y="12" width="2" height="5" fill="#37474f"/>
+    <rect x="6" y="16" width="3" height="2" fill="#263238"/><rect x="11" y="16" width="3" height="2" fill="#263238"/>
+  </svg>`;}},
+
+  // DELIVERER — red/gold, strong stance, tick/checkmark
+  {id:'deliverer',name:'DELIVERER',superpower:'Reliable, focused and gets things done without fuss',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="7" y="2" width="6" height="4" fill="#ffccbc"/>
+    <rect x="8" y="3" width="1" height="1" fill="#bf360c"/><rect x="11" y="3" width="1" height="1" fill="#bf360c"/>
+    <rect x="8" y="5" width="4" height="1" fill="#d84315"/>
+    <rect x="5" y="6" width="10" height="6" fill="#c62828"/>
+    <rect x="3" y="7" width="2" height="4" fill="#c62828"/><rect x="15" y="7" width="2" height="4" fill="#c62828"/>
+    <rect x="3" y="11" width="2" height="1" fill="#ffccbc"/><rect x="15" y="11" width="2" height="1" fill="#ffccbc"/>
+    <rect x="8" y="7" width="1" height="3" fill="#FFD32A"/>
+    <rect x="9" y="8" width="1" height="2" fill="#FFD32A"/>
+    <rect x="10" y="7" width="1" height="3" fill="#FFD32A"/>
+    <rect x="11" y="7" width="1" height="1" fill="#FFD32A"/>
+    <rect x="7" y="12" width="2" height="5" fill="#b71c1c"/><rect x="11" y="12" width="2" height="5" fill="#b71c1c"/>
+    <rect x="6" y="16" width="3" height="2" fill="#7f0000"/><rect x="11" y="16" width="3" height="2" fill="#7f0000"/>
+  </svg>`;}},
+
+  // CONNECTOR — warm purple/lilac, heart detail, open arms
+  {id:'connector',name:'CONNECTOR',superpower:'The team\'s glue — builds relationships and brings people together',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="7" y="2" width="6" height="4" fill="#f3e5f5"/>
+    <rect x="8" y="3" width="1" height="1" fill="#4a148c"/><rect x="11" y="3" width="1" height="1" fill="#4a148c"/>
+    <rect x="9" y="5" width="2" height="1" fill="#7b1fa2"/>
+    <rect x="5" y="6" width="10" height="6" fill="#7b1fa2"/>
+    <rect x="2" y="7" width="3" height="3" fill="#7b1fa2"/><rect x="15" y="7" width="3" height="3" fill="#7b1fa2"/>
+    <rect x="2" y="10" width="2" height="1" fill="#f3e5f5"/><rect x="16" y="10" width="2" height="1" fill="#f3e5f5"/>
+    <rect x="8" y="7" width="1" height="1" fill="#f48fb1"/><rect x="10" y="7" width="1" height="1" fill="#f48fb1"/>
+    <rect x="7" y="8" width="6" height="1" fill="#f48fb1"/>
+    <rect x="8" y="9" width="4" height="1" fill="#f48fb1"/>
+    <rect x="9" y="10" width="2" height="1" fill="#f48fb1"/>
+    <rect x="7" y="12" width="2" height="5" fill="#6a1b9a"/><rect x="11" y="12" width="2" height="5" fill="#6a1b9a"/>
+    <rect x="6" y="16" width="3" height="2" fill="#4a148c"/><rect x="11" y="16" width="3" height="2" fill="#4a148c"/>
+  </svg>`;}},
+
+  // WILDCARD — multicolour, jester hat, chaotic fun energy
+  {id:'wildcard',name:'WILDCARD',superpower:'Unpredictable in the best possible way — keeps everyone thinking',
+  svg(s){return`<svg width="${s}" height="${s}" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+    <rect x="6" y="0" width="3" height="3" fill="#e91e63"/>
+    <rect x="11" y="0" width="3" height="3" fill="#00bcd4"/>
+    <rect x="8" y="1" width="4" height="2" fill="#FFD32A"/>
+    <rect x="7" y="2" width="6" height="4" fill="#fff9c4"/>
+    <rect x="8" y="3" width="1" height="1" fill="#311b92"/><rect x="11" y="3" width="1" height="1" fill="#311b92"/>
+    <rect x="9" y="5" width="2" height="1" fill="#e91e63"/>
+    <rect x="5" y="6" width="10" height="6" fill="#e91e63"/>
+    <rect x="3" y="7" width="2" height="4" fill="#00bcd4"/><rect x="15" y="7" width="2" height="4" fill="#FFD32A"/>
+    <rect x="3" y="11" width="2" height="1" fill="#fff9c4"/><rect x="15" y="11" width="2" height="1" fill="#fff9c4"/>
+    <rect x="8" y="7" width="2" height="3" fill="#fff"/>
+    <rect x="11" y="7" width="1" height="2" fill="#FFD32A"/>
+    <rect x="7" y="12" width="2" height="5" fill="#7b1fa2"/><rect x="11" y="12" width="2" height="5" fill="#00695c"/>
+    <rect x="6" y="16" width="3" height="2" fill="#e91e63"/><rect x="11" y="16" width="3" height="2" fill="#00bcd4"/>
+  </svg>`;}},
 ];
 
 // ── SKILLS ──
@@ -476,7 +635,7 @@ const MONTHS=['January','February','March','April','May','June','July','August',
 let cards=[];
 let powerups={};
 let potm={};
-let selectedAvatar='warrior';
+let selectedAvatar='energizer';
 let activeFilter=null;
 let editingId=null;
 let pinUnlocked=false;
@@ -529,12 +688,18 @@ function buildAvatarPicker(){
     const d=document.createElement('div');
     d.className='av-opt'+(av.id===selectedAvatar?' sel':'');
     d.innerHTML=av.svg(44)+`<span class="av-name">${av.name}</span>`;
+    d.title=av.superpower;
     d.onclick=()=>{selectedAvatar=av.id;document.querySelectorAll('.av-opt').forEach(e=>e.classList.remove('sel'));d.classList.add('sel');syncCard();};
     g.appendChild(d);
   });
+  // Show descriptor for selected avatar
+  const selAv=AVATARS.find(a=>a.id===selectedAvatar);
+  const desc=document.getElementById('avatar-desc');
+  if(desc&&selAv) desc.textContent=selAv.superpower;
 }
 function avSvg(id,s){return(AVATARS.find(a=>a.id===id)||AVATARS[0]).svg(s||80);}
 function avName(id){return(AVATARS.find(a=>a.id===id)||AVATARS[0]).name;}
+function avSuperpower(id){return(AVATARS.find(a=>a.id===id)||AVATARS[0]).superpower;}
 
 // ── SLIDERS ──
 function buildSliders(){
@@ -579,6 +744,9 @@ function syncCard(){
     const scores=getScores();
     document.getElementById('c-sp').textContent=getSuperPower(scores);
     document.getElementById('c-av').innerHTML=avSvg(selectedAvatar,90)+`<span>${avName(selectedAvatar)}</span>`;
+    // Update descriptor
+    const desc=document.getElementById('avatar-desc');
+    if(desc) desc.textContent=avSuperpower(selectedAvatar);
     renderStats(document.getElementById('c-stats'),scores);
   }catch(e){}
 }
@@ -642,8 +810,8 @@ function renderGallery(){
     wrap.innerHTML=`
       <div class="card">
         <div class="corner corner-tl"></div><div class="corner corner-tr"></div><div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <div class="c-header"><span class="c-series">LUMEN // SERIES 01</span><span class="c-id">${card.cardno}</span></div>
-        <div class="c-photo"><div class="c-av">${avSvg(card.avatar||'warrior',65)}<span>${avName(card.avatar||'warrior')}</span></div></div>
+        <div class="c-header"><span class="c-series">LUMEN // CHAMPIONSHIP EDITION</span><span class="c-id">${card.cardno}</span></div>
+        <div class="c-photo"><div class="c-av">${avSvg(card.avatar||'energizer',65)}<span>${avName(card.avatar||'energizer')}</span></div></div>
         <div class="c-nameplate">
           <div class="c-name">${card.name}</div>
           <div class="c-role">${card.role||'&nbsp;'}</div>
@@ -657,7 +825,7 @@ function renderGallery(){
             <span class="powerup-count">${pups.length}</span>
           </div>
         </div>
-        <div class="c-footer"><span class="c-brand">LUMEN</span><span class="c-edition">TOP TRUMPS 2026</span></div>
+        <div class="c-footer"><span class="c-brand">LUMEN</span><span class="c-edition">DREAM TEAM 2026</span></div>
       </div>
       <div class="card-actions">
         <button class="btn-sm" onclick="openModal(${card.id},'${card.name.replace(/'/g,"\\'")}')">⚡ POWER-UP</button>
@@ -819,7 +987,7 @@ function buildShinyCard(card){
   const scores=card.scores||[];
   const avg=scores.length?(scores.reduce((a,s)=>a+s.score,0)/scores.length).toFixed(1):'0.0';
   const statsHtml=scores.map(s=>`<div class="c-stat"><div class="c-stat-top"><span class="c-stat-name">${s.label}</span><span class="c-stat-score">${s.score}/10</span></div><div class="c-bar-track"><div class="c-bar-fill ${s.barClass}" style="width:${s.score*10}%"></div></div></div>`).join('')+`<div class="c-overall"><span class="c-overall-label">OVERALL PWR</span><span class="c-overall-score">${avg}</span></div>`;
-  return`<div class="card shiny-card"><div class="corner corner-tl"></div><div class="corner corner-tr"></div><div class="corner corner-bl"></div><div class="corner corner-br"></div><div class="c-header"><span class="c-series">★ PLAYER OF THE MONTH ★</span><span class="c-id">${card.cardno}</span></div><div class="c-photo"><div class="c-av">${avSvg(card.avatar||'warrior',70)}<span>${avName(card.avatar||'warrior')}</span></div></div><div class="c-nameplate"><div class="c-name">${card.name}</div><div class="c-role">${card.role||'&nbsp;'}</div><div class="c-sp-row"><span class="c-sp-label">⚡ SUPER POWER</span><span class="c-sp-val">${getSuperPower(card.scores)}</span></div></div><div class="c-stats">${statsHtml}</div><div class="c-footer"><span class="c-brand">LUMEN</span><span class="c-edition">TOP TRUMPS 2026</span></div></div>`;
+  return`<div class="card shiny-card"><div class="corner corner-tl"></div><div class="corner corner-tr"></div><div class="corner corner-bl"></div><div class="corner corner-br"></div><div class="c-header"><span class="c-series">★ PLAYER OF THE MONTH ★</span><span class="c-id">${card.cardno}</span></div><div class="c-photo"><div class="c-av">${avSvg(card.avatar||'energizer',70)}<span>${avName(card.avatar||'energizer')}</span></div></div><div class="c-nameplate"><div class="c-name">${card.name}</div><div class="c-role">${card.role||'&nbsp;'}</div><div class="c-sp-row"><span class="c-sp-label">⚡ SUPER POWER</span><span class="c-sp-val">${getSuperPower(card.scores)}</span></div></div><div class="c-stats">${statsHtml}</div><div class="c-footer"><span class="c-brand">LUMEN</span><span class="c-edition">DREAM TEAM 2026</span></div></div>`;
 }
 
 // ── EDIT / DELETE ──
@@ -828,7 +996,7 @@ function editCard(id){
   editingId=id;
   document.getElementById('f-name').value=card.name;
   document.getElementById('f-role').value=card.role||'';
-  selectedAvatar=card.avatar||'warrior';buildAvatarPicker();
+  selectedAvatar=card.avatar||'energizer';buildAvatarPicker();
   card.scores.forEach(s=>{const el=document.getElementById(`range-${s.key}`);if(el){el.value=s.score;onSlide(s.key);}});
   switchTab('editor');syncCard();showToast('✏ EDITING — SAVE WHEN DONE');
 }
@@ -860,7 +1028,7 @@ function resetForm(){
   editingId=null;
   document.getElementById('f-name').value='';
   document.getElementById('f-role').value='';
-  selectedAvatar='warrior';buildAvatarPicker();
+  selectedAvatar='energizer';buildAvatarPicker();
   SKILLS.forEach(s=>{
     const el=document.getElementById(`range-${s.key}`);if(el)el.value=0;
     const v=document.getElementById(`val-${s.key}`);if(v)v.textContent='0';
@@ -924,7 +1092,7 @@ function renderHof(){
         <div class="hof-rank">${rankDisplay}</div>
         ${!isFirst?`<div class="hof-rank-num">#${rank}</div>`:''}
       </div>
-      <div style="margin-right:10px;">${avSvg(card.avatar||'warrior',isFirst?52:40)}</div>
+      <div style="margin-right:10px;">${avSvg(card.avatar||'energizer',isFirst?52:40)}</div>
       <div class="hof-info">
         <div class="hof-name ${isFirst?'champion':''}">${card.name}</div>
         <div class="hof-role">${card.role||'&nbsp;'}</div>
